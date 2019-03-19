@@ -88,12 +88,15 @@ if(BUILD_TESTING)
   if(TARGET test_action_client)
     target_include_directories(test_action_client PUBLIC
       include
-      ${osrf_testing_tools_cpp_INCLUDE_DIRS}
     )
     target_link_libraries(test_action_client
       ${PROJECT_NAME}
     )
-    ament_target_dependencies(test_action_client "rcl" "test_msgs")
+    ament_target_dependencies(test_action_client
+      "rcl"
+      "test_msgs"
+      "osrf_testing_tools_cpp"
+    )
   endif()
 
   # get the rmw implementations ahead of time
@@ -119,14 +122,15 @@ if(BUILD_TESTING)
         PUBLIC "RMW_IMPLEMENTATION=${rmw_implementation}")
       target_include_directories(${target}${target_suffix} PUBLIC
         include
-        ${osrf_testing_tools_cpp_INCLUDE_DIRS}
         ${rcl_INCLUDE_DIRS}
       )
       target_link_libraries(${target}${target_suffix}
         ${PROJECT_NAME}
       )
       ament_target_dependencies(${target}${target_suffix}
-        "test_msgs")
+        "test_msgs"
+        "osrf_testing_tools_cpp"
+      )
     endif()
   endfunction()
 
