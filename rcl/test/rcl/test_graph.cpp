@@ -199,7 +199,7 @@ TEST_F(
   EXPECT_EQ(RCL_RET_OK, ret) << rcl_get_error_string().str;
   EXPECT_EQ(nat.names.size, num_names);
   for (size_t i = 0; i < num_names; i++) {
-    EXPECT_EQ(nat.types[i].size, 0u);
+    EXPECT_EQ(nat.types[i].impl, nullptr);
   }
   ret = rcl_names_and_types_fini(&nat);
   EXPECT_EQ(RCL_RET_OK, ret) << rcl_get_error_string().str;
